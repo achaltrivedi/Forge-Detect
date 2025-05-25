@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Result - Image Forgery Detection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>🔍 Analysis Result</h1>
+    <label class="switch">
+      <input type="checkbox" id="modeToggle">
+      <span class="slider round"></span>
+    </label>
+  </header>
+
+  <main>
+    <div class="upload-box">
+      <h2>Prediction: <span style="color: #007bff;">{{ prediction }}</span></h2>
+      
+      {% if prediction == 'Forged' %}
+        <div class="result-image-container">
+          <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image" class="result-image" />
+          <p class="confidence-score">Confidence Score: {{ confidence }}%</p>
+          <img src="{{ url_for('static', filename='heatmaps/' + heatmap_name) }}" alt="Heatmap" class="result-image" />
+        </div>
+      {% else %}
+        <div class="result-image-container">
+          <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image" class="result-image" />
+          <p class="confidence-score">Confidence Score: {{ confidence }}%</p>
+        </div>
+      {% endif %}
+
+      <div class="result-buttons">
+        <a href="{{ url_for('index') }}" class="analyze-btn">Analyze Another Image</a>
+        <a href="{{ url_for('static', filename='reports/' + report_filename) }}" download class="analyze-btn">Download Report</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
+

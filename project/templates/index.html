@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Forgery Detection</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>🕵️ Image Forgery Detection</h1>
+    <label class="switch">
+      <input type="checkbox" id="modeToggle">
+      <span class="slider round"></span>
+    </label>
+  </header>
+
+  <main>
+    <form id="uploadForm" method="POST" action="/predict" enctype="multipart/form-data">
+      <div class="upload-box">
+        <label for="imageUpload" class="upload-label">Click to upload an image</label>
+        <input type="file" id="imageUpload" name="image" accept="image/*" required>
+        <div id="previewContainer">
+          <img id="previewImage" src="#" alt="Image Preview" style="display: none;" />
+        </div>
+        <button type="submit" class="analyze-btn">Analyze Image</button>
+      </div>
+    </form>
+  </main>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
